@@ -26,7 +26,7 @@ public class EntryService {
         return userRepo.findById(userId).orElse(null);
     }
 
-    public Entry createUser(Entry newEntry) {
+    public Entry addEntry(Entry newEntry) {
         newEntry.setUserId(null);
         userRepo.save(newEntry);
         return newEntry;
@@ -40,7 +40,7 @@ public class EntryService {
         userRepo.deleteById(userId);
     }
 
-    public EntryResponse updateUser(Long userId, EntryUpdateRequest updateRequest) {
+    public EntryResponse updateEntry(Long userId, EntryUpdateRequest updateRequest) {
         // Find the user to be updated.
         Entry entryToUpdate = userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Entry not found!"));
