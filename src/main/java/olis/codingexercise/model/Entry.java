@@ -14,8 +14,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "users") // "user" is a reserved keyword in many DBs so I'm going to use "users"
-public class User {
+@Table(name = "entries")
+public class Entry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
