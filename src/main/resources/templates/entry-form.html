@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Basic Data Entry Form</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<h1>Entry Form</h1>
+<form action="/entries" method="post">
+    <label for="firstName">First Name (required):</label><br />
+    <input type="text" id="firstName" name="firstName" required /> <br /> <br />
+
+    <label for="lastName">Last Name (required):</label><br />
+    <input type="text" id="lastName" name="lastName" required /> <br /> <br />
+
+    <label for="title">Title (required):</label><br />
+    <input type="text" id="title" name="title" required /> <br /> <br />
+
+    <label for="age">Age (optional):</label><br />
+    <input type="number" id="age" name="age" min="0" /> <br /> <br />
+
+    <label for="hometown">Hometown (optional):</label><br />
+    <input type="text" id="hometown" name="hometown" /><br /><br />
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
