@@ -49,13 +49,6 @@ public class EntryController {
         return "redirect:/entries/confirm?id=" + saved.getEntryId();
     }
 
-    // Submission page
-    @GetMapping("/submit")
-    public String showSubmit(Model model) {
-        model.addAttribute("entries", entryService.findAll());
-        return "entry-submit";
-    }
-
     // Confirmation page
     @GetMapping("/confirm")
     public String showConfirmation(Model model) {
