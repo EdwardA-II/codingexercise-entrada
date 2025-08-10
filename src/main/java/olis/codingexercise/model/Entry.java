@@ -27,11 +27,13 @@ public class Entry {
     @Column(nullable = false)
     private String lastName;
 
+    @Column
     private Integer age;
 
     @Column(nullable = false)
     private String title;
 
+    @Column
     private String hometown;
 
 }

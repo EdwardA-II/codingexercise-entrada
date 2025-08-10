@@ -22,7 +22,7 @@ public class EntryController {
     }
 
     @GetMapping(produces = "application/json")
-    public List<Entry> getAllEntrys() {
+    public List<Entry> getAllEntries() {
         return entryService.findAll();
     }
 
