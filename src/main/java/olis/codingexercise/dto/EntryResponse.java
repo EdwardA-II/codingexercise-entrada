@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class EntryResponse {
 
-    private Long userId;
+    private Long entryId;
     private String firstName;
     private String lastName;
     private Integer age;

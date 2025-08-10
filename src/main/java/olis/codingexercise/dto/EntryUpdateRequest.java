@@ -7,7 +7,8 @@ import lombok.Setter;
 @Setter
 public class EntryUpdateRequest {
 
-    private String name;
+    private String firstName;
+    private String lastName;
     private Integer age;
     private String title;
     private String hometown;

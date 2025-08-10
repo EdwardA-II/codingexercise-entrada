@@ -1,16 +1,17 @@
 package olis.codingexercise.controller;
 
-import olis.codingexercise.dto.EntryResponse;
-import olis.codingexercise.dto.EntryUpdateRequest;
+import jakarta.validation.Valid;
 import olis.codingexercise.model.Entry;
 import olis.codingexercise.service.EntryService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/entries")
 public class EntryController {
 
@@ -21,32 +22,45 @@ public class EntryController {
         this.entryService = entryService;
     }
 
-    @GetMapping(produces = "application/json")
-    public List<Entry> getAllEntries() {
-        return entryService.findAll();
+    // Show the form + table of previous entries
+    @GetMapping
+    public String showForm(Model model) {
+
+        // Create an empty Form object to hold all of the user's info.
+        model.addAttribute("entry", new Entry());
+        model.addAttribute("entries", entryService.findAll());
+
+        // Return the Thymeleaf template name!
+        return "entry-form";
     }
 
-    @PostMapping(produces = "application/json", consumes = "application/json")
-    public Entry addEntry(@RequestBody Entry newEntry) {
-        return entryService.addEntry(newEntry);
+    // Handle the Form submission
+    @PostMapping
+    public String submit(@Valid @ModelAttribute Entry entry,
+                         // BindingResult - Stores validation errors so we can tell the user that they entered something wrong.
+                         BindingResult binding,
+                         Model model) {
+        if (binding.hasErrors()) {
+            model.addAttribute("entries", entryService.findAll());
+            return "entry-form";
+        }
+        Entry saved = entryService.addEntry(entry);
+        // Redirect and pass the new ID so the confirm page can show the just-submitted record
+        return "redirect:/entries/confirm?id=" + saved.getEntryId();
     }
 
-    @GetMapping(path = "/{entryId}", produces = "application/json")
-    public Entry getEntry(@PathVariable Long entryId) {
-        return entryService.findById(entryId);
+    // Submission page
+    @GetMapping("/submit")
+    public String showSubmit(Model model) {
+        model.addAttribute("entries", entryService.findAll());
+        return "entry-submit";
     }
 
-    @PatchMapping("/{entryId}")
-    public ResponseEntity<EntryResponse> editEntry(
-            @PathVariable Long entryId,
-            @RequestBody EntryUpdateRequest updateRequest
-    ) {
-        EntryResponse response = entryService.updateEntry(entryId, updateRequest);
-        return ResponseEntity.ok(response);
+    // Confirmation page
+    @GetMapping("/confirm")
+    public String showConfirmation(Model model) {
+        model.addAttribute("entries", entryService.findAll());
+        return "entry-confirmation";
     }
 
-    @DeleteMapping(path = "/{entryId}", produces = "application/json")
-    public void deleteEntry(@PathVariable Long entryId) {
-        entryService.delete(entryId);
-    }
 }

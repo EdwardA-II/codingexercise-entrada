@@ -12,47 +12,47 @@ import java.util.List;
 @Service
 public class EntryService {
 
-    private final EntryRepository userRepo;
+    private final EntryRepository entryRepository;
 
     public EntryService(EntryRepository entryRepository) {
-        this.userRepo = entryRepository;
+        this.entryRepository = entryRepository;
     }
 
     public List<Entry> findAll() {
-        return userRepo.findAll();
+        return entryRepository.findAll();
     }
 
-    public Entry findById(Long userId) {
-        return userRepo.findById(userId).orElse(null);
+    public Entry findById(Long entryId) {
+        return entryRepository.findById(entryId).orElse(null);
     }
 
     public Entry addEntry(Entry newEntry) {
-        newEntry.setUserId(null);
-        userRepo.save(newEntry);
+        newEntry.setEntryId(null);
+        entryRepository.save(newEntry);
         return newEntry;
     }
 
     public Entry save(Entry entry) {
-        return userRepo.save(entry);
+        return entryRepository.save(entry);
     }
 
-    public void delete(Long userId) {
-        userRepo.deleteById(userId);
+    public void delete(Long entryId) {
+        entryRepository.deleteById(entryId);
     }
 
-    public EntryResponse updateEntry(Long userId, EntryUpdateRequest updateRequest) {
-        // Find the user to be updated.
-        Entry entryToUpdate = userRepo.findById(userId)
+    public EntryResponse updateEntry(Long entryId, EntryUpdateRequest updateRequest) {
+        // Find the entry to be updated.
+        Entry entryToUpdate = entryRepository.findById(entryId)
                 .orElseThrow(() -> new RuntimeException("Entry not found!"));
 
-        // Update the user using the requested changes.
+        // Update the entry using the requested changes.
         EntryMapper.updateEntryFromRequest(updateRequest, entryToUpdate);
 
-        // After updating the user, map it to the Response DTO.
+        // After updating the entry, map it to the Response DTO.
         EntryResponse entryResponse = EntryMapper.mapResponse(entryToUpdate);
 
         // Save the updates to the DB.
-        userRepo.save(entryToUpdate);
+        entryRepository.save(entryToUpdate);
 
         return entryResponse;
     }

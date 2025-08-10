@@ -9,8 +9,11 @@ import org.springframework.stereotype.Component;
 public class EntryMapper {
 
     public static void updateEntryFromRequest(EntryUpdateRequest updateRequest, Entry entryToUpdate) {
-        if (isBlank(updateRequest.getName())) {
-            entryToUpdate.setFirstName(updateRequest.getName().trim());
+        if ( isBlank(updateRequest.getFirstName()) ) {
+            entryToUpdate.setFirstName(updateRequest.getFirstName().trim());
+        }
+        if ( isBlank(updateRequest.getLastName()) ) {
+            entryToUpdate.setLastName(updateRequest.getLastName().trim());
         }
         if (updateRequest.getAge() != null) {
             entryToUpdate.setAge(updateRequest.getAge());
@@ -18,14 +21,14 @@ public class EntryMapper {
         if (updateRequest.getTitle() != null && !updateRequest.getTitle().trim().isEmpty()) {
             entryToUpdate.setTitle(updateRequest.getTitle().trim());
         }
-        if (isBlank(updateRequest.getHometown())) {
+        if ( isBlank(updateRequest.getHometown()) ) {
             entryToUpdate.setHometown(updateRequest.getHometown().trim());
         }
     }
 
     public static EntryResponse mapResponse(Entry entry) {
         EntryResponse entryResponse = new EntryResponse();
-        entryResponse.setUserId(entry.getUserId());
+        entryResponse.setEntryId(entry.getEntryId());
 
         entryResponse.setFirstName(entry.getFirstName());
         entryResponse.setLastName(entry.getLastName());

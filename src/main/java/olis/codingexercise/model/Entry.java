@@ -19,7 +19,7 @@ public class Entry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long entryId;
 
     @Column(nullable = false)
     private String firstName;

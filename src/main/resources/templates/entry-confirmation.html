@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Confirmation</title>
+</head>
+<body>
+<h1>Thank you for your submission!</h1>
+
+<h2>All Entries</h2>
+<table border="1">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Age</th>
+    <th>Title</th>
+    <th>Hometown</th>
+  </tr>
+  <tr th:each="e : ${entries}">
+    <td th:text="${e.firstName}"></td>
+    <td th:text="${e.lastName}"></td>
+    <td th:text="${e.age}"></td>
+    <td th:text="${e.title}"></td>
+    <td th:text="${e.hometown}"></td>
+  </tr>
+</table>
+
+<a th:href="@{/entries}">Enter Another Form!</a>
+</body>
+</html>
