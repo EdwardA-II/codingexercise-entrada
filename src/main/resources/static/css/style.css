@@ -63,3 +63,7 @@ tbody tr:hover { background: #f9fbff; }
 .next-form:hover {
   background: var(--brand-press);
 }
+
+.form-padding {
+    padding-left: 10px;
+}
