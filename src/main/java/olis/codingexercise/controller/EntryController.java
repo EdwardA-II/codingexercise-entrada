@@ -1,5 +1,6 @@
 package olis.codingexercise.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import olis.codingexercise.model.Entry;
 import olis.codingexercise.service.EntryService;
@@ -54,5 +55,14 @@ public class EntryController {
         model.addAttribute("entries", entryService.findAll());
         return "entry-confirmation";
     }
+
+    // Send the user to a default error page if need be.
+//    @RequestMapping("/error")
+//    public String showErrorPage(HttpServletRequest errorRequest)
+//    {
+//        Object statusObject = errorRequest.getAttribute("javax.servlet.error.status_code");
+//        CustomErrorController errorController = new CustomErrorController();
+//        return errorController.handleError(errorRequest);
+//    }
 
 }

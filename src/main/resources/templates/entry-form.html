@@ -11,6 +11,7 @@
     <form action="/entries" method="post">
     <label for="firstName">First Name (required):</label><br />
     <input type="text" id="firstName" name="firstName" required /> <br /> <br />
+    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
 
     <label for="lastName">Last Name (required):</label><br />
     <input type="text" id="lastName" name="lastName" required /> <br /> <br />
