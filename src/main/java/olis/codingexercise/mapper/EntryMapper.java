@@ -10,19 +10,19 @@ import olis.codingexercise.model.Entry;
 public class EntryMapper {
 
     public static void updateEntryFromRequest(EntryUpdateRequest updateRequest, Entry entryToUpdate) {
-        if ( isBlank(updateRequest.getFirstName()) ) {
+        if ( !isBlank(updateRequest.getFirstName()) ) {
             entryToUpdate.setFirstName(updateRequest.getFirstName().trim());
         }
-        if ( isBlank(updateRequest.getLastName()) ) {
+        if ( !isBlank(updateRequest.getLastName()) ) {
             entryToUpdate.setLastName(updateRequest.getLastName().trim());
         }
         if (updateRequest.getAge() != null) {
             entryToUpdate.setAge(updateRequest.getAge());
         }
-        if (updateRequest.getTitle() != null && !updateRequest.getTitle().trim().isEmpty()) {
+        if (!isBlank(updateRequest.getTitle())) {
             entryToUpdate.setTitle(updateRequest.getTitle().trim());
         }
-        if ( isBlank(updateRequest.getHometown()) ) {
+        if ( !isBlank(updateRequest.getHometown()) ) {
             entryToUpdate.setHometown(updateRequest.getHometown().trim());
         }
     }

@@ -1,7 +1,7 @@
 package olis.codingexercise.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import olis.codingexercise.dto.EntryUpdateRequest;
 import olis.codingexercise.model.Entry;
 import olis.codingexercise.service.EntryService;
 import org.springframework.stereotype.Controller;
@@ -87,6 +87,32 @@ public class EntryController {
                               @RequestParam("_method") String method) {
         if ("delete".equalsIgnoreCase(method)) {
             entryService.deleteEntry(entryId);
+        }
+
+        // Take us back to the entries list once the deletion is complete.
+        return "redirect:/entries/all-entries";
+    }
+
+    @GetMapping("/edit/{entryId}")
+    public String showEditForm(@PathVariable("entryId") Long entryId, Model model) {
+        Entry entryToUpdate = entryService.findById(entryId);
+
+        // Check if the entry was found.
+        if (entryToUpdate == null) {
+            // Maybe make an "entry not found" page later?
+            return "redirect:/entries/all-entries";
+        }
+
+        model.addAttribute("entry", entryToUpdate);
+        return "entry-edit-form";
+    }
+
+    @RequestMapping(value = "/edit/{entryId}", method = RequestMethod.POST)
+    public String updateEntry(@PathVariable Long entryId,
+                              @RequestParam("_method") String method,
+                              EntryUpdateRequest updatedForm) {
+        if ("patch".equalsIgnoreCase(method)) {
+            entryService.updateEntry(entryId, updatedForm);
         }
 
         // Take us back to the entries list once the deletion is complete.

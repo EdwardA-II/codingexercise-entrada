@@ -14,7 +14,7 @@
 <body>
   <h1>All Entries</h1>
 
-  <table>
+  <table class="my-table">
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
@@ -32,8 +32,9 @@
         <td th:text="${e.title}"></td>
         <td th:text="${e.hometown}"></td>
         <td>
+          <a th:href="@{/entries/edit/{id}(id=${e.entryId})}" class="edit-link">
             <button class="edit-btn" th:attr="data-id=${e.entryId}">Edit</button>
-
+          </a>
             <a th:href="@{/entries/delete/{id}(id=${e.entryId})}" class="delete-link">
                 <button type="button" class="delete-btn">Delete</button>
             </a>
@@ -43,10 +44,12 @@
   </table>
 
   <!-- Link to go to the form for a new entry -->
-  <a th:href="@{/entries/entry-form}" class="button next-form">Enter Another Form!</a>
+  <div class="button-group" >
+    <a th:href="@{/entries/entry-form}" class="button next-form">Enter Another Form!</a>
+    <!-- Link to view all entries!-->
+    <a th:href="@{/entries/all-entries}" class="button next-form">View All Entries!</a>
+  </div>
 
-  <!-- Link to view all entries!-->
-  <a th:href="@{/entries/all-entries}" class="button next-form">View All Entries!</a>
   <!-- For future typescript/javascript implementation(s). -->
   <!-- <script src="/js/EntryFormUpdateDelete.ts"></script> -->
 
