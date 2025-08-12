@@ -110,6 +110,7 @@ table {
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow);
+    border: 1px solid var(--line);
 }
 
 thead th {
@@ -118,12 +119,15 @@ thead th {
     background: #f0f4ff;
     border-bottom: 1px solid var(--line);
     font-weight: 700;
+    border-right: 1px solid var(--line);
+    border-right: 1px solid var(--line);
 }
 
 tbody td {
     padding: 12px;
     border-bottom: 1px solid var(--line);
-    text-align: center
+    text-align: center;
+    border-right: 1px solid var(--line);
 }
 
 tbody tr:hover {

@@ -23,7 +23,7 @@ public class EntryController {
     }
 
     // Show the form + table of previous entries
-    @GetMapping
+    @GetMapping("/entry-form")
     public String showForm(Model model) {
         // Create an empty Form object to hold all of the user's info.
         model.addAttribute("entry", new Entry());
@@ -34,7 +34,7 @@ public class EntryController {
     }
 
     // Handle the Form submission
-    @PostMapping
+    @PostMapping("/confirm")
     public String submit(@Valid @ModelAttribute Entry entry,
                          // BindingResult - Stores validation errors so we can
                          // tell the user that they entered something wrong.
@@ -46,23 +46,13 @@ public class EntryController {
         }
         Entry saved = entryService.addEntry(entry);
         // Redirect and pass the new ID so the confirm page can show the just-submitted record
-        return "redirect:/entries/confirm?id=" + saved.getEntryId();
+        return "redirect:/entries/all-entries?newId=" + saved.getEntryId();
     }
 
     // Confirmation page
-    @GetMapping("/confirm")
+    @GetMapping("/all-entries")
     public String showConfirmation(Model model) {
         model.addAttribute("entries", entryService.findAll());
         return "entry-confirmation";
     }
-
-    // Send the user to a default error page if need be.
-//    @RequestMapping("/error")
-//    public String showErrorPage(HttpServletRequest errorRequest)
-//    {
-//        Object statusObject = errorRequest.getAttribute("javax.servlet.error.status_code");
-//        CustomErrorController errorController = new CustomErrorController();
-//        return errorController.handleError(errorRequest);
-//    }
-
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Basic Data Entry Form</title>
@@ -8,25 +8,25 @@
 <body>
 <h1>Entry Form</h1>
 <div class = "form-padding">
-    <form action="/entries" method="post">
-    <label for="firstName">First Name (required):</label><br />
-    <input type="text" id="firstName" name="firstName" required /> <br /> <br />
-    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+    <form action="/entries/confirm" method="post" th:object="${entry}">
+        <label for="firstName">First Name (required):</label><br />
+        <input type="text" id="firstName" th:field="*{firstName}" required /> <br /> <br />
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
 
-    <label for="lastName">Last Name (required):</label><br />
-    <input type="text" id="lastName" name="lastName" required /> <br /> <br />
+        <label for="lastName">Last Name (required):</label><br />
+        <input type="text" id="lastName" th:field="*{lastName}" required /> <br /> <br />
 
-    <label for="title">Title (required):</label><br />
-    <input type="text" id="title" name="title" required /> <br /> <br />
+        <label for="title">Title (required):</label><br />
+        <input type="text" id="title" th:field="*{title}" required /> <br /> <br />
 
-    <label for="age">Age (optional):</label><br />
-    <input type="number" id="age" name="age" min="0" /> <br /> <br />
+        <label for="age">Age (optional):</label><br />
+        <input type="number" id="age" th:field="*{age}" min="0" /> <br /> <br />
 
-    <label for="hometown">Hometown (optional):</label><br />
-    <input type="text" id="hometown" name="hometown" /><br /><br />
+        <label for="hometown">Hometown (optional):</label><br />
+        <input type="text" id="hometown" th:field="*{hometown}" /><br /><br />
 
-    <button type="submit">Submit</button>
-</form>
+        <button class ="button next-form" type="submit">Submit</button> </a>
+    </form>
 </div>
 </body>
 </html>
