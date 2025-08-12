@@ -2,6 +2,7 @@ package olis.codingexercise.service;
 
 import olis.codingexercise.dto.EntryResponse;
 import olis.codingexercise.dto.EntryUpdateRequest;
+import olis.codingexercise.exception.EntryNotFoundException;
 import olis.codingexercise.mapper.EntryMapper;
 import olis.codingexercise.model.Entry;
 import olis.codingexercise.repository.EntryRepository;
@@ -28,7 +29,8 @@ public class EntryService {
     }
 
     public Entry findById(Long entryId) {
-        return entryRepository.findById(entryId).orElse(null);
+        return entryRepository.findById(entryId)
+                .orElseThrow(() -> new RuntimeException("Entry not found!"));
     }
 
     @Transactional
@@ -45,6 +47,9 @@ public class EntryService {
 
     @Transactional
     public void deleteEntry(Long entryId) {
+        if (!entryRepository.existsById(entryId)) {
+            throw new EntryNotFoundException("Entry not found with entryId: " + entryId);
+        }
         entryRepository.deleteById(entryId);
     }
 
