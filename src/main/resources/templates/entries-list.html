@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <title>All Entries</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .highlight {
+      background: #fffbcc;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>All Entries</h1>
+
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Age</th>
+      <th>Title</th>
+      <th>Hometown</th>
+      <th>Actions</th>
+    </tr>
+    <tbody>
+      <tr th:each="e : ${entries}" th:id="'entry-' + ${e.entryId}"
+        th:classappend="${e.entryId} == ${newEntryId} ? 'highlight'">
+        <td th:text="${e.firstName}"></td>
+        <td th:text="${e.lastName}"></td>
+        <td th:text="${e.age}"></td>
+        <td th:text="${e.title}"></td>
+        <td th:text="${e.hometown}"></td>
+        <td>
+          <button class="edit-btn" th:attr="data-id=${e.entryId}">Edit</button>
+          <button class="delete-btn" th:attr="data-id=${e.entryId}">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Link to go to the form for a new entry -->
+  <a th:href="@{/entries/entry-form}" class="button next-form">Enter Another Form!</a>
+
+  <!-- Link to view all entries!-->
+  <a th:href="@{/entries/all-entries}" class="button next-form">View All Entries!</a>
+  <!-- For future typescript/javascript implementation(s). -->
+  <!-- <script src="/js/EntryFormUpdateDelete.ts"></script> -->
+
+</body>
+
+</html>

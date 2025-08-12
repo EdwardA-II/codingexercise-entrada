@@ -28,8 +28,8 @@ public class EntryService {
 
     public Entry addEntry(Entry newEntry) {
         newEntry.setEntryId(null);
-        entryRepository.save(newEntry);
-        return newEntry;
+        Entry savedEntry = entryRepository.save(newEntry);
+        return savedEntry;
     }
 
     public Entry save(Entry entry) {

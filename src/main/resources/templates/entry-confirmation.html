@@ -1,67 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-  <title>Entry Confirmation</title>
-  <link rel="stylesheet" href="/css/style.css" />
+    <title>Submission Confirmed</title>
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
-
 <body>
-  <h1 class="form-padding"> Thank you for your submission!</h1>
+<div class="container">
+    <h1 class="hero">Thanks for using Entrada!</h1>
 
-  <div class="container">
-    <h2>All Entries</h2>
-    <table>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-        <th>Title</th>
-        <th>Hometown</th>
-        <th>Actions</th>
-      </tr>
+    <div class="card">
+        <h2>Here is your submission.</h2>
+        <div th:if="${entry}" class="submission-details">
+                <p><strong>Name:</strong> <span th:text="${entry.firstName} + ' ' + ${entry.lastName}"></span></p>
+                <p><strong>Age:</strong> <span th:text="${entry.age}"></span></p>
+                <p><strong>Title:</strong> <span th:text="${entry.title}"></span></p>
+                <p><strong>Hometown:</strong> <span th:text="${entry.hometown}"></span></p>
+        </div>
+        <p>You can view all entries or enter another form.</p>
 
-      <tr th:each="e : ${entries}" id="entry-[[${e.entryId}]]">
-        <td>
-          <span class="entry-value" id="first-name-[[${e.entryId}]]">[[${e.firstName}]]</span>
-          <input class="entry-input" id="edit-first-name-[[${e.entryId}]]" type="text" value="[[${e.firstName}]]"
-            style="display: none;" />
-        </td>
-        <td>
-          <span class="entry-value" id="last-name-[[${e.entryId}]]">[[${e.lastName}]]</span>
-          <input class="entry-input" id="edit-last-name-[[${e.entryId}]]" type="text" value="[[${e.lastName}]]"
-            style="display: none;" />
-        </td>
-        <td>
-          <span class="entry-value" id="age-[[${e.entryId}]]">[[${e.age}]]</span>
-          <input class="entry-input" id="edit-age-[[${e.entryId}]]" type="number" value="[[${e.age}]]"
-            style="display: none;" />
-        </td>
-        <td>
-          <span class="entry-value" id="title-[[${e.entryId}]]">[[${e.title}]]</span>
-          <input class="entry-input" id="edit-title-[[${e.entryId}]]" type="text" value="[[${e.title}]]"
-            style="display: none;" />
-        </td>
-        <td>
-          <span class="entry-value" id="hometown-[[${e.entryId}]]">[[${e.hometown}]]</span>
-          <input class="entry-input" id="edit-hometown-[[${e.entryId}]]" type="text" value="[[${e.hometown}]]"
-            style="display: none;" />
-        </td>
-        <td>
-          <!-- Edit Button -->
-          <button class="edit-btn" data-id="[[${e.entryId}]]">Edit</button>
-          <!-- Delete Button -->
-          <button class="delete-btn" data-id="[[${e.entryId}]]">Delete</button>
-        </td>
-      </tr>
-    </table>
+        <div class="button-group">
+            <a th:href="@{/entries/entry-form}" class="button">Enter Another Form!</a>
+            <a th:href="@{/entries/all-entries}" class="button">View All Entries</a>
+        </div>
+    </div>
 
-    <!-- Link to go to the form for a new entry -->
-    <a th:href="@{/entries/entry-form}" class="button next-form">Enter Another Form!</a>
-    <a th:href="@{/entries/all-entries}" class="button next-form">View All Entries!</a>
-  </div>
-
-  <!-- <script src="/js/EntryFormUpdateDelete.ts"></script> -->
-
+    <p class="professional-message">
+        We're happy to have you on board. Feel free to leave feedback at ekabusiness2023@gmail.com.
+    </p>
+</div>
 </body>
 </html>
