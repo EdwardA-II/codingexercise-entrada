@@ -1,4 +1,4 @@
-# Entrada
+# 📋 Entrada
 
 A full-stack web application built with **Java 21** and **Spring Boot 3.5.4** that demonstrates modern web development practices, clean architecture, and professional coding standards.
 
