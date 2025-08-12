@@ -6,10 +6,15 @@ import olis.codingexercise.mapper.EntryMapper;
 import olis.codingexercise.model.Entry;
 import olis.codingexercise.repository.EntryRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+// Learning Point: A transaction keeps all DB work for all methods in this class together.
+    // If anything fails, all changes are rolled back so the DB stays consistent.
+    // "readOnly = true" means this method only reads data and won’t make updates.
+@Transactional(readOnly = true)
 public class EntryService {
 
     private final EntryRepository entryRepository;
@@ -26,20 +31,24 @@ public class EntryService {
         return entryRepository.findById(entryId).orElse(null);
     }
 
+    @Transactional
     public Entry addEntry(Entry newEntry) {
         newEntry.setEntryId(null);
-        entryRepository.save(newEntry);
-        return newEntry;
+        Entry savedEntry = entryRepository.save(newEntry);
+        return savedEntry;
     }
 
+    @Transactional
     public Entry save(Entry entry) {
         return entryRepository.save(entry);
     }
 
-    public void delete(Long entryId) {
+    @Transactional
+    public void deleteEntry(Long entryId) {
         entryRepository.deleteById(entryId);
     }
 
+    @Transactional
     public EntryResponse updateEntry(Long entryId, EntryUpdateRequest updateRequest) {
         // Find the entry to be updated.
         Entry entryToUpdate = entryRepository.findById(entryId)

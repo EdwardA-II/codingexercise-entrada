@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Entry</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<h1>Edit Entry</h1>
+<div class="form-padding">
+    <form th:action="@{/entries/edit/{id}(id=${entry.entryId})}" th:object="${entry}" method="post">
+
+        <input type="hidden" name="_method" value="patch" />
+
+        <label for="firstName">First Name (required):</label><br />
+        <input type="text" id="firstName" th:field="*{firstName}" required /><br /><br />
+
+        <label for="lastName">Last Name (required):</label><br />
+        <input type="text" id="lastName" th:field="*{lastName}" required /><br /><br />
+
+        <label for="title">Title (required):</label><br />
+        <input type="text" id="title" th:field="*{title}" required /><br /><br />
+
+        <label for="age">Age (optional):</label><br />
+        <input type="number" id="age" th:field="*{age}" min="0" /><br /><br />
+
+        <label for="hometown">Hometown (optional):</label><br />
+        <input type="text" id="hometown" th:field="*{hometown}" /><br /><br />
+
+        <button class="button next-form" type="submit">Update</button>
+        <a th:href="@{/entries/all-entries}" class="button cancel-button">Cancel</a>
+    </form>
+
+    <div th:if="${entry == null}">
+        <!-- If it's null, tell us it cant find it! -->
+        <p>Entry not found!</p>
+    </div>
+
+</div>
+</body>
+</html>
