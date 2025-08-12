@@ -36,7 +36,7 @@ public class EntryService {
         return entryRepository.save(entry);
     }
 
-    public void delete(Long entryId) {
+    public void deleteEntry(Long entryId) {
         entryRepository.deleteById(entryId);
     }
 

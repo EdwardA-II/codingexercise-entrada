@@ -32,8 +32,11 @@
         <td th:text="${e.title}"></td>
         <td th:text="${e.hometown}"></td>
         <td>
-          <button class="edit-btn" th:attr="data-id=${e.entryId}">Edit</button>
-          <button class="delete-btn" th:attr="data-id=${e.entryId}">Delete</button>
+            <button class="edit-btn" th:attr="data-id=${e.entryId}">Edit</button>
+
+            <a th:href="@{/entries/delete/{id}(id=${e.entryId})}" class="delete-link">
+                <button type="button" class="delete-btn">Delete</button>
+            </a>
         </td>
       </tr>
     </tbody>

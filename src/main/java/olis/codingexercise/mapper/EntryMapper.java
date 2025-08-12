@@ -1,9 +1,10 @@
 package olis.codingexercise.mapper;
 
+import org.springframework.stereotype.Component;
+
 import olis.codingexercise.dto.EntryResponse;
 import olis.codingexercise.dto.EntryUpdateRequest;
 import olis.codingexercise.model.Entry;
-import org.springframework.stereotype.Component;
 
 @Component
 public class EntryMapper {
@@ -28,7 +29,7 @@ public class EntryMapper {
 
     public static EntryResponse mapResponse(Entry entry) {
         EntryResponse entryResponse = new EntryResponse();
-        entryResponse.setEntryId(entry.getEntryId());
+        // entryResponse.setEntryId(entry.getEntryId()); // Not returning Id!
 
         entryResponse.setFirstName(entry.getFirstName());
         entryResponse.setLastName(entry.getLastName());

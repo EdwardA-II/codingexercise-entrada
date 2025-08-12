@@ -48,7 +48,7 @@ public class EntryController {
         return "redirect:/entries/confirm?newEntryId=" + saved.getEntryId();
     }
 
-    // Method to handle the GET request after the redirect
+    // Method to handle the GET request after the confirmation redirect
     @GetMapping("/confirm")
     public String showConfirmation(@RequestParam("newEntryId") Long entryId, Model model) {
         Entry newEntry = entryService.findById(entryId);
@@ -63,4 +63,36 @@ public class EntryController {
         model.addAttribute("entries", allEntries);
         return "entries-list";
     }
+
+    // Serves an "Are you sure?" page to the user just in case.
+    @GetMapping("/delete/{entryId}")
+    public String showDeleteConfirmation(@PathVariable("entryId") Long entryId, Model model) {
+        Entry entryToDelete = entryService.findById(entryId);
+
+        // Check if the entry was found.
+        if (entryToDelete == null) {
+            // Maybe make an "entry not found" page later?
+            return "redirect:/entries/all-entries";
+        }
+
+        model.addAttribute("entry", entryToDelete);
+        return "entry-delete-confirmation";
+    }
+
+    // Learning Moment:
+        // Here, we are "tricking" Spring Boot into overriding the POST request into a DELETE request
+        // because HTML requests only allow for POST and GET requests!
+    @RequestMapping(value = "/delete/{entryId}", method = RequestMethod.POST)
+    public String deleteEntry(@PathVariable("entryId") Long entryId,
+                              @RequestParam("_method") String method) {
+        if ("delete".equalsIgnoreCase(method)) {
+            entryService.deleteEntry(entryId);
+        }
+
+        // Take us back to the entries list once the deletion is complete.
+        return "redirect:/entries/all-entries";
+    }
+
+
+
 }

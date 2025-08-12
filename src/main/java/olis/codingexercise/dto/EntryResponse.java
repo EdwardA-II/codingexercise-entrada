@@ -7,7 +7,8 @@ import lombok.Setter;
 @Setter
 public class EntryResponse {
 
-    private Long entryId;
+    // Don't want to return the ID bc might be sensitive data/info
+    // private Long entryId;
     private String firstName;
     private String lastName;
     private Integer age;
