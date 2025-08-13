@@ -115,8 +115,10 @@ The Entry entity includes:
 
 2. **Run with Docker Compose**
    ```bash
-   docker-compose up --build
+   docker compose up --build -d
    ```
+
+   
 
 3. **Access the application**
    - Main application: http://localhost:8080 or http://localhost:8080/home
@@ -142,13 +144,22 @@ The Entry entity includes:
 
 The application includes comprehensive unit tests demonstrating testing best practices:
 
+### The below scripts are still a work in progress, ensuring you can run it within Docker.
+
 ```bash
 # Run all tests
 mvn test
 
 # Run tests with coverage
 mvn test jacoco:report
+
+
 ```
+
+As a temporary alternative, please locate the EntryServiceTest.java class located at:
+codingexercise-entrada\src\test\java\olis\codingexercise\service\EntryServiceTest.java
+
+Then run each test case individually or simultaneously in your preferred IDE (IntelliJ, VS Code, Eclipse etc).
 
 ### Test Coverage
 - **Service Layer**: 100% method coverage with Mockito
