@@ -30,7 +30,7 @@ This application fulfills the coding exercise requirements by providing:
 ### Frontend
 - **HTML5** - Semantic markup
 - **CSS3** - Modern styling with responsive design
-- **TypeScript** - Enhanced JavaScript for better maintainability
+- **TypeScript** - Enhanced JavaScript for better maintainability (In-progress)
 - **Thymeleaf** - Server-side templating
 
 ### DevOps & Testing
