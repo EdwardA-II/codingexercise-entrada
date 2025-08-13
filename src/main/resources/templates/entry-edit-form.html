@@ -5,36 +5,50 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-<h1>Edit Entry</h1>
-<div class="form-padding">
-    <form th:action="@{/entries/edit/{id}(id=${entry.entryId})}" th:object="${entry}" method="post">
+<div class="container">
+    <h1 class="hero">Edit Entry</h1>
+    
+    <div class="card">
+        <form th:action="@{/entries/edit/{id}(id=${entry.entryId})}" th:object="${entry}" method="post">
 
         <input type="hidden" name="_method" value="patch" />
 
-        <label for="firstName">First Name (required):</label><br />
-        <input type="text" id="firstName" th:field="*{firstName}" required /><br /><br />
+        <div class="form-row">
+            <label for="firstName">First Name (required):</label>
+            <input type="text" id="firstName" th:field="*{firstName}" required placeholder="Enter first name" />
+        </div>
 
-        <label for="lastName">Last Name (required):</label><br />
-        <input type="text" id="lastName" th:field="*{lastName}" required /><br /><br />
+        <div class="form-row">
+            <label for="lastName">Last Name (required):</label>
+            <input type="text" id="lastName" th:field="*{lastName}" required placeholder="Enter last name" />
+        </div>
 
-        <label for="title">Title (required):</label><br />
-        <input type="text" id="title" th:field="*{title}" required /><br /><br />
+        <div class="form-row">
+            <label for="title">Title (required):</label>
+            <input type="text" id="title" th:field="*{title}" required placeholder="Enter job title" />
+        </div>
 
-        <label for="age">Age (optional):</label><br />
-        <input type="number" id="age" th:field="*{age}" min="0" /><br /><br />
+        <div class="form-row">
+            <label for="age">Age (optional):</label>
+            <input type="number" id="age" th:field="*{age}" min="0" max="150" placeholder="Enter age" />
+        </div>
 
-        <label for="hometown">Hometown (optional):</label><br />
-        <input type="text" id="hometown" th:field="*{hometown}" /><br /><br />
+        <div class="form-row">
+            <label for="hometown">Hometown (optional):</label>
+            <input type="text" id="hometown" th:field="*{hometown}" placeholder="Enter hometown" />
+        </div>
 
-        <button class="button next-form" type="submit">Update</button>
-        <a th:href="@{/entries/all-entries}" class="button cancel-button">Cancel</a>
-    </form>
+        <div class="button-group">
+            <button class="button" type="submit">Update</button>
+            <a th:href="@{/entries/all-entries}" class="button">Cancel</a>
+        </div>
+            </form>
+    </div>
 
     <div th:if="${entry == null}">
         <!-- If it's null, tell us it cant find it! -->
         <p>Entry not found!</p>
     </div>
-
 </div>
 </body>
 </html>

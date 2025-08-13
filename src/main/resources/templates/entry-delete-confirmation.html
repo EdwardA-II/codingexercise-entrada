@@ -22,8 +22,10 @@
 
       <form th:action="@{/entries/delete/{id}(id=${entry.entryId})}" method="post">
         <input type="hidden" name="_method" value="delete" />
-        <button type="submit" class="button delete-button">Confirm Delete</button>
-        <a th:href="@{/entries/all-entries}" class="button cancel-button">Cancel</a>
+        <div class="button-group">
+          <button type="submit" class="button delete-button">Confirm Delete</button>
+          <a th:href="@{/entries/all-entries}" class="button cancel-button">Cancel</a>
+        </div>
       </form>
 
       <div th:if="${entry == null}">
