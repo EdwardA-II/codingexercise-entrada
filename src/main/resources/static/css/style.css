@@ -63,6 +63,15 @@ a:hover {
     border-radius: 10px;
     text-decoration: none;
     transition: background 120ms ease;
+    /* Ensure consistent sizing for both button and a tags */
+    box-sizing: border-box;
+    height: auto;
+    line-height: 1.2;
+    vertical-align: middle;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 .button:hover {
@@ -71,7 +80,7 @@ a:hover {
 
 /* headings */
 h1 {
-    text-align: left;
+    text-align: center;
     width: 90%;
     margin: 10px auto
 };
@@ -156,15 +165,136 @@ tbody tr:hover {
     padding-left: 10px;
 }
 
+/* Form alignment and styling */
+.form-padding form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-padding label {
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+.form-padding input[type="text"],
+.form-padding input[type="number"] {
+    width: 250px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.form-padding input[type="text"]:focus,
+.form-padding input[type="number"]:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-padding .form-row {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.form-padding button {
+    margin-left: 215px;
+}
+
+/* Card form styling */
+.card form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card .form-row {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.card label {
+    display: inline-block;
+    width: 180px;
+    text-align: right;
+    margin-right: 20px;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.card input[type="text"],
+.card input[type="number"] {
+    width: 280px;
+    padding: 10px 15px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.card input[type="text"]:focus,
+.card input[type="number"]:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.card .button-group {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.card .button-group .button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    /* Ensure consistent button sizing */
+    box-sizing: border-box;
+    height: auto;
+    line-height: 1.2;
+    vertical-align: middle;
+}
+
 .my-table {
   width: 90%;
   margin: 0 auto !important;
 }
 
 .button-group {
-    text-align: left;
-    width: 90%;
-    margin: 10px auto
+    text-align: center;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.button-group .button {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+
+
+/* Delete confirmation page button styling */
+.delete-button {
+    background: #dc2626 !important; /* Red color for delete */
+    margin-right: 15px;
+}
+
+.delete-button:hover {
+    background: #b91c1c !important; /* Darker red on hover */
+}
+
+.cancel-button {
+    background: var(--muted) !important; /* Gray color for cancel */
+}
+
+.cancel-button:hover {
+    background: #4b5563 !important; /* Darker gray on hover */
 }
 
 

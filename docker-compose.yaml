@@ -29,6 +29,19 @@ services:
         condition: service_healthy
 #    restart: on-failure
 
+#  app-tests:
+#    build: .
+#    depends_on:
+#      postgres-db:
+#        condition: service_healthy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/postgres
+#      SPRING_DATASOURCE_USERNAME: postgres
+#      SPRING_DATASOURCE_PASSWORD: 123
+#      SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
+#      SERVER_PORT: 0
+#    command: ["mvn","-q","-DskipITs=false","test"]
+
 volumes:
   postgres-data:
     driver: local
