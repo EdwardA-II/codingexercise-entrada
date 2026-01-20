@@ -23,9 +23,7 @@ body {
 
 /* base */
 body {
-    /* font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; */
-    /* Matching the OLIS page font! */
-    font-family: 'EB Garamond', serif;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     color: var(--ink);
     background: var(--bg);
     line-height: 1.5;
@@ -83,7 +81,7 @@ h1 {
     text-align: center;
     width: 90%;
     margin: 10px auto
-};
+}
   
 h2 {
     margin: 24px 0 12px;
